@@ -52,6 +52,7 @@ class TasksScreens extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 25),
               decoration: BoxDecoration(
                 color: Color(0xFFF637EC),
                 borderRadius: BorderRadius.only(
@@ -60,7 +61,18 @@ class TasksScreens extends StatelessWidget {
                 ),
               ),
               child: ListView(
-                children: [ListTile()],
+                children: [
+                  ListTile(
+                    title: Text(
+                      'Task1',
+                      style: TextStyle(color: Color(0xFFFAEA48), fontSize: 20),
+                    ),
+                    trailing: Checkbox(
+                      value: false,
+                      onChanged: (value) {},
+                    ),
+                  ),
+                ],
               ),
             ),
           )
