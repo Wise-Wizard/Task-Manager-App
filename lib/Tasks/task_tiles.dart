@@ -8,7 +8,7 @@ class TasksTile extends StatelessWidget {
     return ListTile(
       title: const Text(
         'Task1',
-        style: TextStyle(color: Color(0xFFFAEA48), fontSize: 20),
+        style: TextStyle(color: Color(0xFFFAEA48), fontSize: 69),
       ),
       trailing: Checkbox(
         value: false,

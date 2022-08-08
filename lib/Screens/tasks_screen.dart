@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_5/Tasks/task_tiles.dart';
 import 'package:flutter_application_5/Tasks/tasks_list.dart';
+import 'add_tasks_screen.dart';
 
 class TasksScreens extends StatelessWidget {
   const TasksScreens({Key? key}) : super(key: key);
@@ -13,7 +13,15 @@ class TasksScreens extends StatelessWidget {
       backgroundColor: Color(0xFF3330E4),
       floatingActionButton: FloatingActionButton(
         elevation: 10,
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              isScrollControlled: true,
+              backgroundColor: Color(0xFF3330E4),
+              shape: CircleBorder(
+                  side: BorderSide(width: 8, color: Color(0xFFF637EC))),
+              context: context,
+              builder: (context) => AddTasks());
+        },
         backgroundColor: Color(0xFF3330E4),
         child: Icon(
           Icons.add,
