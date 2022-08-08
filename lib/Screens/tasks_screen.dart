@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/Tasks/task_tiles.dart';
+import 'package:flutter_application_5/Tasks/tasks_list.dart';
 
 class TasksScreens extends StatelessWidget {
   const TasksScreens({Key? key}) : super(key: key);
@@ -60,20 +62,7 @@ class TasksScreens extends StatelessWidget {
                   topRight: Radius.circular(10),
                 ),
               ),
-              child: ListView(
-                children: [
-                  ListTile(
-                    title: Text(
-                      'Task1',
-                      style: TextStyle(color: Color(0xFFFAEA48), fontSize: 20),
-                    ),
-                    trailing: Checkbox(
-                      value: false,
-                      onChanged: (value) {},
-                    ),
-                  ),
-                ],
-              ),
+              child: TasksList(),
             ),
           )
         ],
