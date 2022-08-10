@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 
 class AddTasks extends StatelessWidget {
-  const AddTasks({Key? key}) : super(key: key);
-
+  String newTask = '';
+  final Function addTask;
+  AddTasks({required this.addTask});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,11 +26,17 @@ class AddTasks extends StatelessWidget {
             cursorWidth: 10,
             cursorColor: Color(0xFFFAEA48),
             textAlign: TextAlign.center,
+            onChanged: (value) {
+              newTask = value;
+            },
           ),
           SizedBox(height: 30),
           FlatButton(
             color: Color(0xFFF637EC),
-            onPressed: (() {}),
+            onPressed: (() {
+              addTask(newTask);
+              Navigator.pop(context);
+            }),
             child: Text(
               'ADD',
               style: TextStyle(

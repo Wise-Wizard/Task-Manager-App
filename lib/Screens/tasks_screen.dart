@@ -3,9 +3,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Tasks/tasks_list.dart';
 import 'add_tasks_screen.dart';
+import 'package:flutter_application_5/Tasks/task.dart';
 
-class TasksScreens extends StatelessWidget {
-  const TasksScreens({Key? key}) : super(key: key);
+class TasksScreens extends StatefulWidget {
+  @override
+  State<TasksScreens> createState() => _TasksScreensState();
+}
+
+class _TasksScreensState extends State<TasksScreens> {
+  List<Task> tasksList = [
+    Task(taskName: 'Mass Extinction'),
+    Task(taskName: 'Type 2 Civilization')
+  ];
+
+  dynamic addNewTask(newTask) {
+    setState(() {
+      tasksList.add(Task(taskName: newTask));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +30,13 @@ class TasksScreens extends StatelessWidget {
         elevation: 10,
         onPressed: () {
           showModalBottomSheet(
-              isScrollControlled: true,
-              backgroundColor: Color(0xFF3330E4),
-              shape: CircleBorder(
-                  side: BorderSide(width: 8, color: Color(0xFFF637EC))),
-              context: context,
-              builder: (context) => AddTasks());
+            isScrollControlled: true,
+            backgroundColor: Color(0xFF3330E4),
+            shape: CircleBorder(
+                side: BorderSide(width: 8, color: Color(0xFFF637EC))),
+            context: context,
+            builder: (context) => AddTasks(addTask: addNewTask),
+          );
         },
         backgroundColor: Color(0xFF3330E4),
         child: Icon(
@@ -54,7 +70,7 @@ class TasksScreens extends StatelessWidget {
                   style: TextStyle(color: Color(0xFFFAEA48), fontSize: 54),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${tasksList.length} Tasks',
                   style: TextStyle(fontSize: 25, color: Color(0xFFFAEA48)),
                 )
               ],
@@ -70,7 +86,9 @@ class TasksScreens extends StatelessWidget {
                   topRight: Radius.circular(10),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(
+                tasks: tasksList,
+              ),
             ),
           )
         ],
