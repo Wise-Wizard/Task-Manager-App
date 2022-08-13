@@ -1,32 +1,28 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'task.dart';
+import 'package:provider/provider.dart';
 import 'task_tiles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/main.dart';
 
-class TasksList extends StatefulWidget {
-  final List<Task> tasks;
-  TasksList({required this.tasks});
-  @override
-  State<TasksList> createState() => _TasksListState();
-}
-
-class _TasksListState extends State<TasksList> {
+class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
         return TasksTile(
-          taskName: widget.tasks[index].taskName,
-          isChecked: widget.tasks[index].isCompleted,
+          deleteTask: Provider.of<AddTaskList>(context).tasksList[index],
+          taskName: Provider.of<AddTaskList>(context).tasksList[index].taskName,
+          isChecked:
+              Provider.of<AddTaskList>(context).tasksList[index].isCompleted,
           checkifCompleted: (checkBoxState) {
-            setState(() {
-              widget.tasks[index].completedTask();
-            });
+            Provider.of<AddTaskList>(context, listen: false).updateCheckBox(
+                Provider.of<AddTaskList>(context, listen: false)
+                    .tasksList[index]);
           },
         );
       },
-      itemCount: widget.tasks.length,
+      itemCount: Provider.of<AddTaskList>(context).tasksList.length,
     );
   }
 }

@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/main.dart';
+import 'package:provider/provider.dart';
 
 class AddTasks extends StatelessWidget {
   String newTask = '';
-  final Function addTask;
-  AddTasks({required this.addTask});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,6 +24,7 @@ class AddTasks extends StatelessWidget {
             ),
           ),
           TextField(
+            style: TextStyle(fontSize: 30, color: Color(0xFFFAEA48)),
             cursorWidth: 10,
             cursorColor: Color(0xFFFAEA48),
             textAlign: TextAlign.center,
@@ -34,13 +36,13 @@ class AddTasks extends StatelessWidget {
           FlatButton(
             color: Color(0xFFF637EC),
             onPressed: (() {
-              addTask(newTask);
+              Provider.of<AddTaskList>(context, listen: false).addTask(newTask);
               Navigator.pop(context);
             }),
             child: Text(
               'ADD',
               style: TextStyle(
-                color: Color(0xFFFAEA48),
+                color: Color(0xFF3330E4),
                 fontSize: 30,
               ),
             ),

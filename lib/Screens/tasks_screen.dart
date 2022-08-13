@@ -4,24 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Tasks/tasks_list.dart';
 import 'add_tasks_screen.dart';
 import 'package:flutter_application_5/Tasks/task.dart';
+import 'package:flutter_application_5/main.dart';
+import 'package:provider/provider.dart';
 
-class TasksScreens extends StatefulWidget {
-  @override
-  State<TasksScreens> createState() => _TasksScreensState();
-}
-
-class _TasksScreensState extends State<TasksScreens> {
-  List<Task> tasksList = [
-    Task(taskName: 'Mass Extinction'),
-    Task(taskName: 'Type 2 Civilization')
-  ];
-
-  dynamic addNewTask(newTask) {
-    setState(() {
-      tasksList.add(Task(taskName: newTask));
-    });
-  }
-
+class TasksScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +21,7 @@ class _TasksScreensState extends State<TasksScreens> {
             shape: CircleBorder(
                 side: BorderSide(width: 8, color: Color(0xFFF637EC))),
             context: context,
-            builder: (context) => AddTasks(addTask: addNewTask),
+            builder: (context) => AddTasks(),
           );
         },
         backgroundColor: Color(0xFF3330E4),
@@ -70,7 +56,7 @@ class _TasksScreensState extends State<TasksScreens> {
                   style: TextStyle(color: Color(0xFFFAEA48), fontSize: 54),
                 ),
                 Text(
-                  '${tasksList.length} Tasks',
+                  '${Provider.of<AddTaskList>(context).tasksList.length} Tasks',
                   style: TextStyle(fontSize: 25, color: Color(0xFFFAEA48)),
                 )
               ],
@@ -86,9 +72,7 @@ class _TasksScreensState extends State<TasksScreens> {
                   topRight: Radius.circular(10),
                 ),
               ),
-              child: TasksList(
-                tasks: tasksList,
-              ),
+              child: TasksList(),
             ),
           )
         ],

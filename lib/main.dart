@@ -2,19 +2,44 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/Screens/tasks_screen.dart';
+import 'package:provider/provider.dart';
+import 'Tasks/task.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'EBGaramond'),
-      home: TasksScreens(),
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => AddTaskList(),
+      child: MaterialApp(
+        theme: ThemeData(fontFamily: 'EBGaramond'),
+        home: TasksScreens(),
+      ),
     );
+  }
+}
+
+class AddTaskList extends ChangeNotifier {
+  List<Task> tasksList = [
+    Task(taskName: 'Mass Extinction'),
+    Task(taskName: 'Type 2 Civilization')
+  ];
+
+  dynamic addTask(String newTask) {
+    tasksList.add(Task(taskName: newTask));
+    notifyListeners();
+  }
+
+  void updateCheckBox(Task task) {
+    task.completedTask();
+    notifyListeners();
+  }
+
+  void deleteTask(Task task) {
+    tasksList.remove(task);
+    notifyListeners();
   }
 }
