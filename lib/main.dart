@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
 
 class AddTaskList extends ChangeNotifier {
   List<Task> tasksList = [
-    Task(taskName: 'Mass Extinction'),
-    Task(taskName: 'Type 2 Civilization')
+    Task(taskName: 'Wake Up'),
+    Task(taskName: 'Brush your Teeth')
   ];
 
   dynamic addTask(String newTask) {
